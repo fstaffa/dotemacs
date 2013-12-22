@@ -1,20 +1,24 @@
 (require 'package)
 (package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives 
+             '("melpa" . "http://melpa.milkbox.net/packages/") t )
 
 (require 'cl)
 ;; Guarantee all packages are installed on start
 (defvar packages-list
   '(rainbow-mode
     evil
+    magit
     evil-paredit
     surround
     color-theme-solarized
-    cider
     rainbow-delimiters
     paredit
     clojure-mode
+    clojure-test-mode
+    cider
+    ac-nrepl
+    auto-complete
     rvm)
   "List of packages needs to be installed at launch")
 
@@ -31,6 +35,46 @@
   (dolist (p packages-list)
     (when (not (package-installed-p p))
       (package-install p))))
+
+;; use shift + arrow keys to switch between visible buffers
+(require 'windmove)
+(windmove-default-keybindings 'super)
+
+;; automatically save buffers associated with files on buffer switch
+;; and on windows switch
+(defadvice switch-to-buffer (before save-buffer-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice other-window (before other-window-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice windmove-up (before other-window-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice windmove-down (before other-window-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice windmove-left (before other-window-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice windmove-right (before other-window-now activate)
+  (when buffer-file-name (save-buffer)))
+
+
+;;auto-complete
+(add-to-list 'load-path "~/.emacs.d")    ; This may not be appeared if you have already added.
+(require 'auto-complete-config)
+(global-auto-complete-mode)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;; cider
+;;(add-hook 'cider-repl-mode-hook 'subword-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(add-hook 'clojure-nrepl-mode-hook 'ac-nrepl-setup)
+(require 'ac-nrepl)
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-repl-mode))
 
 ;; paredit
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -61,4 +105,4 @@
 (setq inhibit-startup-message t)
 
 ;;clojure
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+
