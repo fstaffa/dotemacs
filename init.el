@@ -13,6 +13,9 @@
     surround
     color-theme-solarized
     rainbow-delimiters
+    projectile
+    flx
+    flx-ido
     paredit
     clojure-mode
     clojure-test-mode
@@ -36,6 +39,8 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
+
+(tool-bar-mode -1)
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (windmove-default-keybindings 'super)
@@ -55,6 +60,14 @@
 (defadvice windmove-right (before other-window-now activate)
   (when buffer-file-name (save-buffer)))
 
+;; ido mode
+(require 'flx-ido)
+(ido-mode t)
+(ido-everywhere)
+(flx-ido-mode 1)
+
+;; projectile
+(projectile-global-mode)
 
 ;;auto-complete
 (add-to-list 'load-path "~/.emacs.d")    ; This may not be appeared if you have already added.
@@ -105,4 +118,17 @@
 (setq inhibit-startup-message t)
 
 ;;clojure
+ (add-hook 'clojure-mode-hook 
+           (lambda () (interactive) (local-set-key (kbd "RET") 'newline-and-indent))) 
 
+
+(global-set-key (kbd "C-j") 'evil-window-down)
+(global-set-key (kbd "C-k") 'evil-window-up)
+(global-set-key (kbd "C-h") 'evil-window-left)
+(global-set-key (kbd "C-l") 'evil-window-right)
+
+(global-set-key (kbd "C-p") 'projectile-find-file)
+
+
+;;minor
+(setq calendar-week-start-day 1)
