@@ -127,7 +127,7 @@
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
-(global-set-key (kbd "C-p") 'projectile-find-file)
+(define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
 
 
 ;;minor
