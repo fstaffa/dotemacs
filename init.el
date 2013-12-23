@@ -122,10 +122,10 @@
            (lambda () (interactive) (local-set-key (kbd "RET") 'newline-and-indent))) 
 
 
-(global-set-key (kbd "C-j") 'evil-window-down)
-(global-set-key (kbd "C-k") 'evil-window-up)
-(global-set-key (kbd "C-h") 'evil-window-left)
-(global-set-key (kbd "C-l") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
 (global-set-key (kbd "C-p") 'projectile-find-file)
 
