@@ -1,3 +1,8 @@
+(tool-bar-mode -1)
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
+
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives 
@@ -22,6 +27,7 @@
     cider
     ac-nrepl
     auto-complete
+    clojure-cheatsheet
     rvm)
   "List of packages needs to be installed at launch")
 
@@ -40,7 +46,6 @@
       (package-install p))))
 
 
-(tool-bar-mode -1)
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (windmove-default-keybindings 'super)
