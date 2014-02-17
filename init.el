@@ -1,3 +1,4 @@
+(load "~/.emacs.d/local/preinit.el")
 (tool-bar-mode -1)
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
@@ -11,8 +12,7 @@
 (require 'cl)
 ;; Guarantee all packages are installed on start
 (defvar packages-list
-  '(rainbow-mode
-    evil
+  '(evil
     magit
     dired+
     evil-paredit
