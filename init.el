@@ -148,8 +148,10 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;;dired
 (require 'dired+)
-
+;; Auto-refresh dired on file change
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 ;;minor
 (setq calendar-week-start-day 1)
