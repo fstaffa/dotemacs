@@ -3,7 +3,6 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
-
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives 
@@ -17,8 +16,8 @@
     dired+
     evil-paredit
     surround
-    color-theme-solarized
     rainbow-delimiters
+    solarized-theme
     projectile
     flx
     flx-ido
@@ -30,7 +29,9 @@
     auto-complete
     clojure-cheatsheet
     clj-refactor
-    rvm)
+    rvm
+    elixir-mode
+)
   "List of packages needs to be installed at launch")
 
 (defun has-package-not-installed ()
@@ -139,7 +140,8 @@
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-(define-key evil-normal-state-map (kbd ",>") 'paredit-forward-slurp-sexp)
+(define-key evil-normal-state-map (kbd ",<") 'paredit-forward-slurp-sexp)
+(define-key evil-normal-state-map (kbd ",>") 'paredit-back-slurp-sexp)
 (define-key evil-normal-state-map (kbd ",d<") 'paredit-splice-sexp-killing-backward)
 
 (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
