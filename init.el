@@ -148,6 +148,8 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(require 'dired+)
+
 
 ;;minor
 (setq calendar-week-start-day 1)
