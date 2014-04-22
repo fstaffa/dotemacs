@@ -145,8 +145,8 @@
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-(define-key evil-normal-state-map (kbd ",<") 'paredit-forward-slurp-sexp)
-(define-key evil-normal-state-map (kbd ",>") 'paredit-back-slurp-sexp)
+(define-key evil-normal-state-map (kbd ",>") 'paredit-forward-slurp-sexp)
+(define-key evil-normal-state-map (kbd ",<") 'paredit-backward-slurp-sexp)
 (define-key evil-normal-state-map (kbd ",d<") 'paredit-splice-sexp-killing-backward)
 
 (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
