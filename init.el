@@ -1,4 +1,6 @@
-(make-directory "~/.emacs.d/local")
+(defvar local-configuration-directory  "~/.emacs.d/local")
+(if (not (file-exists-p local-configuration-directory))
+    (make-directory "~/.emacs.d/local"))
 (defvar preinit-file  "~/.emacs.d/local/preinit.el")
 (if (not (file-exists-p preinit-file)) (write-region nil nil preinit-file))
 (load preinit-file)
@@ -34,7 +36,7 @@
     clj-refactor
     rvm
     elixir-mode
-)
+    )
   "List of packages needs to be installed at launch")
 
 (defun has-package-not-installed ()
@@ -134,8 +136,8 @@
 (setq inhibit-startup-message t)
 
 ;;clojure
- (add-hook 'clojure-mode-hook 
-           (lambda () (interactive) (local-set-key (kbd "RET") 'newline-and-indent))) 
+(add-hook 'clojure-mode-hook 
+	  (lambda () (interactive) (local-set-key (kbd "RET") 'newline-and-indent))) 
 
 
 
