@@ -1,4 +1,6 @@
-(load "~/.emacs.d/local/preinit.el")
+(defvar preinit-file  "~/.emacs.d/local/preinit.el")
+(if (not (file-exists-p preinit-file)) (write-region nil nil preinit-file))
+(load preinit-file)
 (tool-bar-mode -1)
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
