@@ -1,3 +1,4 @@
+(make-directory "~/.emacs.d/local")
 (defvar preinit-file  "~/.emacs.d/local/preinit.el")
 (if (not (file-exists-p preinit-file)) (write-region nil nil preinit-file))
 (load preinit-file)
