@@ -137,6 +137,10 @@
 ;;no startup screen
 (setq inhibit-startup-message t)
 
+;; fix electric indent in evil mode
+(define-key evil-insert-state-map [remap newline] 'newline)
+(define-key evil-insert-state-map [remap newline-and-indent] 'newline-and-indent)
+
 ;;clojure
 (add-hook 'clojure-mode-hook 
 	  (lambda () (interactive) (local-set-key (kbd "RET") 'newline-and-indent))) 
