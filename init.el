@@ -10,6 +10,8 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+(mouse-avoidance-mode 'banish)
+
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives 
