@@ -38,6 +38,7 @@
     clj-refactor
     rvm
     elixir-mode
+    haskell-mode
     )
   "List of packages needs to be installed at launch")
 
@@ -162,3 +163,9 @@
 
 ;;minor
 (setq calendar-week-start-day 1)
+
+
+;;haskell
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
