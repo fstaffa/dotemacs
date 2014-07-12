@@ -3,7 +3,7 @@
       (make-directory "~/.emacs.d/local"))
   (let ((preinit-file (format "%s/%s" local-configuration-directory "preinit.el")))
     (if (not (file-exists-p preinit-file))
-	(write-region nil nil preinit-file))
+	(write-region "1" nil preinit-file))
     (load preinit-file)))
 
 (tool-bar-mode -1)
@@ -22,7 +22,7 @@
     magit
     dired+
     evil-paredit
-    surround
+    evil-surround
     rainbow-delimiters
     solarized-theme
     projectile
@@ -120,8 +120,8 @@
 
 (require 'evil)
 (evil-mode 1)
-(require 'surround)
-(global-surround-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 ;; evil paredit support
 ;;(add-hook 'emacs-lisp-mode-hook 'evil-paredit-mode)
 
