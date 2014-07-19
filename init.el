@@ -39,6 +39,7 @@
     rvm
     elixir-mode
     haskell-mode
+    markdown-mode
     )
   "List of packages needs to be installed at launch")
 
