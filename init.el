@@ -6,6 +6,10 @@
 	(write-region "1" nil preinit-file))
     (load preinit-file)))
 
+;; add windows git tools to path
+(if (file-directory-p "c:/Program Files (x86)/Git/bin/")
+(add-to-list 'exec-path "c:/Program Files (x86)/Git/bin/"))
+
 (tool-bar-mode -1)
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
