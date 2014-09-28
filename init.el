@@ -34,9 +34,8 @@
     flx-ido
     paredit
     clojure-mode
-    clojure-test-mode
     cider
-    ac-nrepl
+    ac-cider
     auto-complete
     clojure-cheatsheet
     clj-refactor
@@ -99,14 +98,17 @@
 
 ;; cider
 ;;(add-hook 'cider-repl-mode-hook 'subword-mode)
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-mode))
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 (add-hook 'clojure-nrepl-mode-hook 'ac-nrepl-setup)
-(require 'ac-nrepl)
-(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
-(add-hook 'cider-mode-hook 'ac-nrepl-setup)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'cider-repl-mode))
 
@@ -136,7 +138,7 @@
 (cljr-add-keybindings-with-prefix "C-c C-r")
 
 (load-theme 'solarized-dark t)
-(global-rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (global-linum-mode 1)
 ;; no backup files
 (setq make-backup-files nil)
@@ -169,6 +171,16 @@
 ;;minor
 (setq calendar-week-start-day 1)
 
+;;octave
+;;(autoload 'octave-mode "octave-mode" nil t)
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
 
 ;;haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
