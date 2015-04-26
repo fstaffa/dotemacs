@@ -5,5 +5,7 @@
 /eshell
 /ac-comphist.dat
 /projectile-bookmarks.eld
+/ido.last
+**/*~
 .mc-lists.el
 **/Thumbs.db

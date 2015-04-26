@@ -12,7 +12,14 @@
 
 (tool-bar-mode -1)
 (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(package-selected-packages
+   (quote
+    (company alchemist company-mode markdown-mode haskell-mode elixir-mode rvm clj-refactor clojure-cheatsheet cider clojure-mode flx-ido flx projectile solarized-theme rainbow-delimiters evil-surround evil-paredit dired+ magit evil))))
 
 (require 'package)
 (package-initialize)
@@ -35,12 +42,12 @@
     paredit
     clojure-mode
     cider
-    ac-cider
-    auto-complete
     clojure-cheatsheet
     clj-refactor
     rvm
+    company
     elixir-mode
+    alchemist
     haskell-mode
     markdown-mode
     )
@@ -89,28 +96,17 @@
 ;; projectile
 (projectile-global-mode)
 
+;; elixir
+(require 'alchemist)
+
 ;;auto-complete
 (add-to-list 'load-path "~/.emacs.d/lisp")    ; This may not be appeared if you have already added.
-(require 'auto-complete-config)
-(global-auto-complete-mode)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; cider
 ;;(add-hook 'cider-repl-mode-hook 'subword-mode)
-(require 'ac-cider)
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-mode))
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(add-hook 'clojure-nrepl-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-repl-mode))
 
 ;; paredit
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -186,3 +182,9 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
