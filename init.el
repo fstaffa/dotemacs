@@ -35,6 +35,7 @@
     dired+
     evil-paredit
     evil-surround
+    evil-leader
     rainbow-delimiters
     solarized-theme
     projectile
@@ -122,10 +123,17 @@
 (add-hook 'emacs-lisp-mode-hook 'evil-paredit-mode)
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
 
+(require 'evil-leader)
 (require 'evil)
 (evil-mode 1)
 (require 'evil-surround)
 (global-evil-surround-mode 1)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "e" 'find-file
+  "b" 'switch-to-buffer
+  "k" 'kill-buffer)
 ;; evil paredit support
 ;;(add-hook 'emacs-lisp-mode-hook 'evil-paredit-mode)
 
@@ -195,3 +203,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(server-start)
